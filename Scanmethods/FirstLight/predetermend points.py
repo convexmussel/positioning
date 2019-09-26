@@ -12,69 +12,78 @@ from data_visualisation.manual_plot import plot3D
 from data_visualisation.manual_plot import plot_simplex
 
 class predeterment_points:
-    def __init__(self, step_time):
+    def __init__(self, interface, file=None, dataset=None ):
         self.interfaces = None
         self.interfaces = interfaces()
 
-        self.step_time = step_time
         self.time_begin = None
         self.time_end = None
 
         # data for the plotting of the scan
         self.num_measurements = 0
         self.highest_points = list()
-        self.time_begin = None
-        self.time_end = None
 
         self.points_measured = []
         self.peak_point = None
-        self.dataset = read_file()
-        self.dataset = np.negative(self.dataset)
 
-    def function(self, location):
-        x, y = location
-        z = -pow((y - 1), 2) - pow((x - 1), 2) + 5
+    def load_config(self, file=None):
+        """ This function read a configfile and assigns the values in the configfile to variables
 
-        return z
+        @:param file the filename is the user wants to load a different configfile
+        """
+        if file is not None:
+            self.config_filename = file
+        # Read the configfile with the assigned name
+        self.config.read(self.config_path + "\\" + self.config_filename)
+
+        # Get values from the configfile and assign them to the correct variables
+        self.refl = self.config.getfloat("Simplex", "reflection")
+        self.exp = self.config.getfloat("Simplex", "expansion")
+        self.cont = self.config.getfloat("Simplex", "contraction")
+        self.iterations = self.config.getint("Simplex", "iterations")
+        self.simplex_size = self.config.getfloat("Simplex", "simplex size")
 
     def test_dataset(self, location):
+        """
+        :param location: A tuple containing Y, Z coordinates.
+        :return: the value of the location measured or if out of bounds of array a bad value
+        """
+        # Unpack the location tuple into the coordinates
         y, z = location
-        y = int(y)
-        z = int(z)
-        if 0.0 <= y <= 29.0 and 0.0 <= z <= 29.0:
-            x = self.dataset[y][z]
-            x = abs(x)
-            return x
-        return 1.5e-20
 
-    def paper_function(self, location):
-        x, y = location
-        easy = (pow(x, 2) + pow(y, 2))
-        z = math.exp(-4 * easy) + (1 / 4) * math.exp(-6 * pow((math.sqrt(easy) - 1.5), 2))
-        print(z)
-
-        return z
-
-    def Rosenbrock_function(self, location):
-        x, y = location
-        z = -1 * (pow(1 - x, 2) + 100 * pow((y - pow(x, 2)), 2))
-        return z
+        # Round the files down as an interger number
+        y = math.floor(y)
+        z = math.floor(z)
+        # Try to get the value from the dataset the value is out of range catch the exeption
+        # and return a value that is always not interesting for the algorithm
+        try:
+            self.num_measurements += 1
+            value = self.dataset[z][y]
+            # Make sure that the value is always positive
+            value = abs(value)
+            return value
+        except IndexError:
+            return 1.5e-20
 
     def move_location(self, location):
-        """"This function move's the piezo actuators to the desired position as indicated by attribute location(tuple)
-        and returns the value at that certain spot"""
-        y, z = location
-        self.num_measurements += 1
-        if self.interfaces.is_connected("osrom") is False and self.interfaces.is_connected("controller") is False:
+        """
+        :param location: A tuple containing Y, Z coordinates.
+        :return: The value measured at the requested point or a bad value if not within possible measuring range
+        """
+        # Check if wanting to measure a dataset or measure with the hardware
+        if self.dataset is not None:
             return self.test_dataset(location)
         else:
+            # Unpack the location tuple into the coordinates
             y, z = location
+            # Check if the location that the algorithm wants to measure is within the range of
+            # the actuators
             if 0.0 <= y <= 30.0 and 0.0 <= z <= 30.0:
-                self.module_z.move_closed(round(z, 2))
-                self.module_y.move_closed(round(y, 2))
-                time.sleep(0.8)
-                self.points_measured += 1
-                return self.PM100.read()
+                # Move to the location that the algorithm wants to measure
+                self.interface.move(y, z)
+                # Increment the amount of measurements done so it is possible to measure the performance
+                self.num_measurements += 1
+                return self.interface.read()
             return 1.5e-20
 
     def point_scan(self):
