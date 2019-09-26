@@ -1,10 +1,13 @@
+import configparser
+import os
+import time
+
+import math
+
 import numpy as np
 from util.point_2D import Point2D
-import time
-import math.floor as floor
-import os
-import configparser
 from util.project_root import get_project_root
+
 
 # noinspection PyAttributeOutsideInit, PyUnusedLocal
 class Simplex_2D:
@@ -26,7 +29,11 @@ class Simplex_2D:
         # creation of the configparser object this object is used for the reading of the config file
         self.config = configparser.ConfigParser()
 
-        # The initial definition of the global variable
+        # Definition for variables used for data storage
+        self.points = []
+        self.highest_points = []
+
+        # The initial definition of the global variable that is used in benchmarking
         self.num_measurements = 0
 
         # Get the relative path of the project, this is needed because the location in the filesystem of the
@@ -45,40 +52,57 @@ class Simplex_2D:
         """
         if file is not None:
             self.config_filename = file
-
+        # Read the configfile with the assigned name
         self.config.read(self.config_path + "\\" + self.config_filename)
-        self.config.get("application", "data_file")
-        self.refl = self.config.get("Simplex", "reflection")
-        self.exp = self.config.get("Simplex", "expansion")
-        self.cont = self.config.get("Simplex", "contraction")
-        self.iterations = self.config.get("Simplex", "iterations")
 
+        # Get values from the configfile and assign them to the correct variables
+        self.refl = self.config.getfloat("Simplex", "reflection")
+        self.exp = self.config.getfloat("Simplex", "expansion")
+        self.cont = self.config.getfloat("Simplex", "contraction")
+        self.iterations = self.config.getint("Simplex", "iterations")
+        self.simplex_size = self.config.getfloat("Simplex", "simplex size")
 
     def test_dataset(self, location):
+        """
+        :param location: A tuple containing Y, Z coordinates.
+        :return: the value of the location measured or if out of bounds of array a bad value
+        """
+        # Unpack the location tuple into the coordinates
         y, z = location
-        y = floor(y)
-        z = floor(z)
-        if 0.0 <= y <= 29.0 and 0.0 <= z <= 29.0:
-            x = self.dataset[z][y]
-            x = abs(x)
-            return x
-        return 1.5e-20
+
+        # Round the files down as an interger number
+        y = math.floor(y)
+        z = math.floor(z)
+        # Try to get the value from the dataset the value is out of range catch the exeption
+        # and return a value that is always not interesting for the algorithm
+        try:
+            self.num_measurements += 1
+            value = self.dataset[z][y]
+            # Make sure that the value is always positive
+            value = abs(value)
+            return value
+        except IndexError:
+            return 1.5e-20
 
     def move_location(self, location):
-        """"This function move's the piezo actuators to the desired position as indicated by attribute location(tuple)
-        and returns the value at that certain spot"""
-        y, z = location
-        self.num_measurements += 1
+        """
+        :param location: A tuple containing Y, Z coordinates.
+        :return: The value measured at the requested point or a bad value if not within possible measuring range
+        """
+        # Check if wanting to measure a dataset or measure with the hardware
         if self.dataset is not None:
             return self.test_dataset(location)
         else:
+            # Unpack the location tuple into the coordinates
             y, z = location
+            # Check if the location that the algorithm wants to measure is within the range of
+            # the actuators
             if 0.0 <= y <= 30.0 and 0.0 <= z <= 30.0:
-                self.module_z.move_closed(round(z, 2))
-                self.module_y.move_closed(round(y, 2))
-                time.sleep(0.8)
-                self.points_measured += 1
-                return self.PM100.read()
+                # Move to the location that the algorithm wants to measure
+                self.interface.move(y, z)
+                # Increment the amount of measurements done so it is possible to measure the performance
+                self.num_measurements += 1
+                return self.interface.read()
             return 1.5e-20
 
     def centroid(self, nr_points=2, point_1=None, point_2=None):
@@ -91,7 +115,7 @@ class Simplex_2D:
         if point_2 is not None:
             p2 = np.asarray(point_2.get_location())
 
-        location_centroid = tuple(1/nr_points * (p1 + p2))
+        location_centroid = tuple(1 / nr_points * (p1 + p2))
         return location_centroid
 
     def reflect(self, nr_points=2, point_cent=None, point_low=None):
@@ -106,7 +130,7 @@ class Simplex_2D:
         if point_low is not None:
             location_low_value = np.asarray(point_low.get_location())
 
-        location_reflect = tuple(location_centroid + self.refl*(location_centroid - location_low_value))
+        location_reflect = tuple(location_centroid + self.refl * (location_centroid - location_low_value))
 
         # create a point object
         point = Point2D(location_reflect, self.move_location(location_reflect))
@@ -137,7 +161,7 @@ class Simplex_2D:
         :return point object, with value
         """
         location_centroid = np.asarray(self.centroid_point)
-        location_worst= np.asarray(self.points[0].get_location())
+        location_worst = np.asarray(self.points[0].get_location())
 
         location_outside = tuple(location_centroid + self.cont * (location_centroid - location_worst))
 
@@ -152,8 +176,7 @@ class Simplex_2D:
         location_low = np.asarray(self.points[0].get_location())
 
         location_inside = tuple(location_centroid - self.cont * (location_centroid - location_low))
-        #print(location_centroid)
-        #print(location_centroid - location_low)
+
         point = Point2D(location_inside, self.move_location(location_inside))
         return point
 
@@ -179,9 +202,9 @@ class Simplex_2D:
         while swapped:
             swapped = False
 
-            for i in range(3-1):
-                if sorted_points[i].x_location > sorted_points[i+1].x_location:
-                    sorted_points[i], sorted_points[i+1] = sorted_points[i + 1], sorted_points[i]
+            for i in range(3 - 1):
+                if sorted_points[i].x_location > sorted_points[i + 1].x_location:
+                    sorted_points[i], sorted_points[i + 1] = sorted_points[i + 1], sorted_points[i]
                     swapped = True
 
         return sorted_points
@@ -190,67 +213,69 @@ class Simplex_2D:
         sorted_points = self.sort_points_clockwise()
 
         area = 0
-        j = len(sorted_points)-1
+        j = len(sorted_points) - 1
         for i in range(0, len(sorted_points)):
             shoelace = (sorted_points[j].x_location + sorted_points[i].x_location) * (sorted_points[j].y_location
-                                                                                          - sorted_points[i].y_location)
+                                                                                      - sorted_points[i].y_location)
             area = area + shoelace
             j = i  # j is previous vertex to i
         area = abs(area / 2.0)
 
-        if area < (30*30/850000):
+        if area < (30 * 30 / 850000):
             return True
         else:
             return False
 
-    def _get_first_points(self, first, size=3):
+    def _get_first_points(self, first):
         """"method that add's the starting points to the point list, these points can either be chose at random or
         with specific intervals between each point
         :param first the location of the first measurement point
         :return the point objects added to a list"""
+        # Unpack the tuple containing location of the first point
         y, z = first
-        if y > 4 and z > 4:
-            second_y = y - size
+        # Check if the location is greater than the size of the ribs of the simplex
+        if y > self.simplex_size and z > self.simplex_size:
+            # calculate the location of the second verticle of the simplex
+            second_y = y - self.simplex_size
             second_z = z
-            third_y = y - size/2
-            third_z = z + 2.6
-            #third_z = z + math.tan(60) * (size/2)
+
+            # calculate the location of the third verticle of the simplex
+            third_y = y - self.simplex_size / 2
+            third_z = z - math.tan(math.radians(60)) * (self.simplex_size / 2)
         else:
-            second_y = y + size
+            # calculate the location of the second verticle of the simplex
+            second_y = y + self.simplex_size
             second_z = z
-            third_y = y + size / 2
-            third_z = z - 2.6
-            #third_z = z - math.tan(60) * (size/2)
+
+            # calculate the location of the third verticle of the simplex
+            third_y = y + self.simplex_size / 2
+            third_z = z + math.tan(math.radians(60)) * (self.simplex_size / 2)
+
+        # Fill the initial points with values
         self.points.append(Point2D(first, self.move_location(first)))
-        self.points.append(Point2D(((second_y, second_z)), self.move_location((second_y, second_z))))
+        self.points.append(Point2D(location=(second_y, second_z), value=self.move_location((second_y, second_z))))
         self.points.append(Point2D(location=(third_y, third_z), value=self.move_location((third_y, third_z))))
         self.points.sort()
 
     def scan(self, begin_location):
+        # Save the time the scan began for benchmark purpose
         self.time_begin = time.time()
         # function that returns retrieves the locations and values of the first points
         self._get_first_points(begin_location.get_location())
 
         for i in range(self.iterations):
+            # ensure that the points are in the correct order index 0 point with smallest value en n with the highest
+            # value
             self.points.sort()
-            self.highest_points.append(self.points[2])
-            #print("biggest: ", self.points[2].x_location, " ", self.points[2].y_location , " ",
-                  #self.points[2].point_value)
-            #print("middle: ", self.points[1].x_location, " ", self.points[1].y_location, " ",
-                  #self.points[1].point_value)
-            #print("smallest: ", self.points[0].x_location, " ", self.points[0].y_location, " ",
-                  #self.points[0].point_value)
 
+            # Save the highest point
+            self.highest_points.append(self.points[2])
+
+            # Calculate the centroid and reflect point
             self.centroid_point = self.centroid()
             self.reflection_point = self.reflect()
 
-            #print(self.reflection_point > self.points[2])
-           # print(self.reflection_point > self.points[1])
-            #print(self.reflection_point > self.points[0])
-
-
-
-
+            # Check paper about nelder mead algorithm for explanation.
             if self.reflection_point > self.points[2]:
                 self.expansion_point = self.expend()
                 if self.expansion_point > self.reflection_point:
@@ -264,13 +289,10 @@ class Simplex_2D:
                 continue
             elif self.reflection_point > self.points[0]:
                 self.outside_cont = self.outside_contract()
-               # print("out contracting" + str(self.outside_cont.point_value)+ " " + str(self.reflection_point.point_value))
                 if self.outside_cont > self.reflection_point:
                     self.points[0] = self.outside_cont
                     continue
                 else:
-
-                    #print(str(self.points[2].get_location()) + " " + str(self.outside_cont.get_location()))
                     outside_centroid = self.centroid(point_1=self.points[2], point_2=self.outside_cont)
                     outside_reflect = self.reflect(point_cent=outside_centroid, point_low=self.points[1])
                     self.points[0] = outside_reflect
@@ -278,85 +300,27 @@ class Simplex_2D:
                     continue
             else:
                 self.inside_cont = self.inside_contract()
-                #print("ins contracting" + str(self.inside_cont.point_value) + " " + str(self.points[0].point_value))
                 if self.inside_cont > self.points[0]:
                     self.points[0] = self.inside_cont
                     continue
                 else:
-                    #print(str(self.points[2].get_location()) + " " + str(self.inside_cont.get_location()))
                     inside_centroid = self.centroid(point_1=self.points[2], point_2=self.inside_cont)
                     inside_reflect = self.reflect(point_cent=inside_centroid, point_low=self.points[1])
                     self.points[0] = inside_reflect
                     self.points[1] = self.inside_cont
                     continue
         self.time_end = time.time()
-        print(self.points[2].get_location())
-        print(self.points[2].point_value)
         return self.highest_points
-
-    def point_scan(self):
-        pass
-        points = []
-        for y in np.arange(2.5, 32.5, 5):
-            for z in np.arange(2.5, 32.5, 5):
-                points.append(Point2D((y,z),self.move_location((y,z))))
-                if points[len(points)-1].point_value > 0.5*0.04:
-                    break
-        points.sort()
-        return points
 
     def get_bestpoint(self):
         return self.points[2]
 
-    def get_measurements(self):
+    def get_num_measurements(self):
         return self.num_measurements
 
-    def get_time(self):
+    def get_exc_time(self):
         excecutiontime = self.time_end - self.time_begin
-        excecutiontime = excecutiontime / 60
-        return str(excecutiontime) + "minutes"
+        return excecutiontime
 
     def get_highest_points(self):
         return self.highest_points
-        # print execution time
-        """"
-        excecutiontime = self.time_end - self.time_begin
-        excecutiontime = excecutiontime / 60
-
-        print(str(excecutiontime) + "minutes")
-        print("number measurements: ", self.points_measured)
-
-        location_line_x = list()
-        location_line_y = list()
-        for point in self.highest_points:
-            x, y = point.get_location()
-            location_line_x.append(x)
-            location_line_y.append(y)
-            
-       return tuple([location_line_x, location_line_y ])
-        """
-
-def f(x,y):
-    easy = (pow(x, 2) + pow(y, 2))
-    z = math.exp(-4 * easy) + (1 / 4) * math.exp(-6 * pow((math.sqrt(easy) - 1.5), 2))
-    return z
-
-
-if __name__ == '__main__':
-    x = np.linspace(-15, 15, 300)
-    y = np.linspace(-15, 15, 300)
-    x, y = np.meshgrid(x, y)
-    f2 = np.vectorize(f)
-    array = f2(x,y)
-    #print(array)
-    dataset = read_file()
-    dataset = np.negative(dataset)
-    #dataset = np.flipud(dataset)
-    simplex = Simplex_2D()
-    simplex.scan2()
-    line = simplex.save_data()
-    points = simplex.point_scan()
-    plot_simplex(points=points, line=line)
-
-
-
