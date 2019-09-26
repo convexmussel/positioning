@@ -4,9 +4,10 @@ from interface.interfaces import interfaces
 import pandas
 from util.project_root import get_project_root
 import os
+import math
 import numpy as np
 
-
+print(math.tan(math.radians(60)) * (1.5))
 def read_values(dataset=None):
     root = get_project_root()
     list_array = []
@@ -52,11 +53,11 @@ def find_peak():
     for i in range(0, 16):
         first_light = random_points(interface, dataset=datasets[i])
         good_enough_point = first_light.point_scan()
-        precision = Simplex_2D(interface, good_enough_point, dataset=datasets[i])
+        precision = Simplex_2D(interface, dataset=datasets[i])
         precision.scan(good_enough_point)
         best_points.append(precision.get_bestpoint())
         total_f += first_light.num_measurements
-        total_p += precision.get_measurements()
+        total_p += precision.get_num_measurements()
     return best_points, total_f, total_p
 datasets = read_values(2)
 # move to peak positions
