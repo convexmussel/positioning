@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e65c44cc-4e21-4018-818b-5d2ea3bbb4af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/interface/sensor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scanmethods/point_2D.py" beforeDir="false" afterPath="$PROJECT_DIR$/util/point_2D.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scanmethods/simple_scan.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scanmethods/simplex_2d.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scanmethods/simplex_2d.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyosrom WIP Jarno/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/config_osrom.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyosrom WIP Jarno/config.ini.orig" beforeDir="false" afterPath="$PROJECT_DIR$/config/config_osrom.ini.orig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/gui/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/gui/application.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrom/osrom.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrom/osrom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyosrom WIP Jarno/run_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyosrom WIP Jarno/run_gui.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Scanmethods/snake_scan.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_visualisation/excel_store.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="388">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Debug/test_file.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>update</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Jarno Voortman" />
+      </list>
+    </option>
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/venv/lib/python3.7/site-packages/ThorlabsPM100/ThorlabsPM100.py" />
+        <option value="$PROJECT_DIR$/venv/bin/Debug x-axis.py" />
+        <option value="$PROJECT_DIR$/Excel/Excel.py" />
+        <option value="$PROJECT_DIR$/Excel.py" />
+        <option value="$PROJECT_DIR$/test tester.py" />
+        <option value="$PROJECT_DIR$/Debug/Debug x-axis.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/pps.py" />
+        <option value="$PROJECT_DIR$/Debug/simple_scan.py" />
+        <option value="$PROJECT_DIR$/Debug/debug_x-axis.py" />
+        <option value="$PROJECT_DIR$/Debug/digiridoo_method.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/digiridoo_method.py" />
+        <option value="$PROJECT_DIR$/excel/excel.py" />
+        <option value="$PROJECT_DIR$/data_visualisation/excel.py" />
+        <option value="$PROJECT_DIR$/data_visualisation/DataManager.py" />
+        <option value="$PROJECT_DIR$/data_visualisation/excel_store.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/hill_climb.py" />
+        <option value="$PROJECT_DIR$/Debug/testscan.py" />
+        <option value="$PROJECT_DIR$/Debug/snake_scan.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/simplex_scan.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/2d_point.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/point_2D.py" />
+        <option value="$PROJECT_DIR$/Debug/manual plot.py" />
+        <option value="$PROJECT_DIR$/Debug/simplex_2d.py" />
+        <option value="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrom/gui.py" />
+        <option value="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrombase.py" />
+        <option value="$PROJECT_DIR$/pyosrom WIP Jarno/mux.py" />
+        <option value="$PROJECT_DIR$/pyosrom WIP Jarno/run_gui.py" />
+        <option value="$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/gui/application.py" />
+        <option value="$PROJECT_DIR$/apt.py" />
+        <option value="$PROJECT_DIR$/interface/module.py" />
+        <option value="$PROJECT_DIR$/Debug/testscanzy.py" />
+        <option value="$PROJECT_DIR$/data_visualisation/manual plot.py" />
+        <option value="$PROJECT_DIR$/Debug/test_file.py" />
+        <option value="$PROJECT_DIR$/Debug/debug.py" />
+        <option value="$PROJECT_DIR$/data_visualisation/plot_data.py" />
+        <option value="$PROJECT_DIR$/run_scans.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/snake_scan.py" />
+        <option value="$PROJECT_DIR$/data_visualisation/plot.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/simplex_2d.py" />
+        <option value="$PROJECT_DIR$/Scanmethods/simple_scan.py" />
+        <option value="$PROJECT_DIR$/interface/sensor.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="612" />
+    <option name="y" value="195" />
+    <option name="width" value="1932" />
+    <option name="height" value="2112" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="APT_Piezo-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="APT_Piezo-master" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="APT_Piezo-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="APT_Piezo-master" type="462c0819:PsiDirectoryNode" />
+              <item name="Debug" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="APT_Piezo-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="APT_Piezo-master" type="462c0819:PsiDirectoryNode" />
+              <item name="Scanmethods" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="ignore_missing_gitignore" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/run_scans.py" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jarno\Dropbox\nano\APT_Piezo-master\util" />
+      <recent name="C:\Users\Jarno\Dropbox\nano\APT_Piezo-master\config" />
+      <recent name="C:\Users\Jarno\Dropbox\nano\APT_Piezo-master\Scanmethods" />
+      <recent name="C:\Users\jarno\Dropbox\nano\APT_Piezo-master\data_visualisation" />
+      <recent name="C:\Users\jarno\Dropbox\nano\APT_Piezo-master\data_visualisation\DataPlot" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.simplex">
+    <configuration name="debug" type="PythonConfigurationType" factoryName="Python">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Debug" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Debug/debug.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="plot data test" type="PythonConfigurationType" factoryName="Python">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_visualisation" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_visualisation/plot_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="plot" type="PythonConfigurationType" factoryName="Python">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_visualisation" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_visualisation/plot.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scans" type="PythonConfigurationType" factoryName="Python">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_scans.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="simplex" type="PythonConfigurationType" factoryName="Python">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Debug" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\Jarno\Dropbox\nano\APT_Piezo-master\Scanmethods\simplex_2d.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="snake_scan" type="PythonConfigurationType" factoryName="Python" singleton="false" nameIsGenerated="true">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Scanmethods" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Scanmethods/snake_scan.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testfile" type="PythonConfigurationType" factoryName="Python">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Debug" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Debug/test_file.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testscanzy" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="APT_Piezo-master" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\jarno\AppData\Local\Programs\Python\Python37-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Debug" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Debug/testscanzy.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.debug" />
+      <item itemvalue="Python.plot data test" />
+      <item itemvalue="Python.plot" />
+      <item itemvalue="Python.scans" />
+      <item itemvalue="Python.simplex" />
+      <item itemvalue="Python.snake_scan" />
+      <item itemvalue="Python.testfile" />
+      <item itemvalue="Python.testscanzy" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e65c44cc-4e21-4018-818b-5d2ea3bbb4af" name="Default Changelist" comment="" />
+      <created>1561711943117</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1561711943117</updated>
+    </task>
+    <task id="LOCAL-00001" summary="test push">
+      <created>1563784096271</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1563784096271</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added a scan that goes from y to z in lines, and a snake scan">
+      <created>1563787163694</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1563787163694</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added polling to check if piezo is zero'd">
+      <created>1563790034922</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1563790034922</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Codebase before refractoring">
+      <created>1567081235139</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1567081235139</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2001321" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49901536" weight="0.32554516" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49207398" weight="0.36804566" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49603698" weight="0.32956153" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4966975" weight="0.3281471" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.510568" side_tool="true" visible="true" weight="0.36633664" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49704608" weight="0.326324" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4953765" weight="0.32956153" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="First push" />
+    <MESSAGE value="test push" />
+    <MESSAGE value="Added a scan that goes from y to z in lines, and a snake scan" />
+    <MESSAGE value="Added polling to check if piezo is zero'd" />
+    <MESSAGE value="first test with simplex method work," />
+    <MESSAGE value="Working Simplex alogritm implemented" />
+    <MESSAGE value="Codebase before refractoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Codebase before refractoring" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/projections/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="27" selection-start-line="8" selection-end-line="9" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/pyserial-3.4.dist-info/INSTALLER">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/pyserial-3.4.dist-info/top_level.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/pyserial-3.4.dist-info/DESCRIPTION.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/configparser.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrombase.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/vosrom/gui.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/vosrom/osrom.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/piosrom/aquisition.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/piosrom/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/piosrom/gui.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/piosrom/network.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/piosrom/osrom.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrom/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrom/osrom.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/deamon-full-threaded.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="14" column="15" lean-forward="true" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/M4FAT.bat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/mux.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/requirements.txt" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/run_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="e#131#140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/osrom/gui.py" />
+    <entry file="file://$PROJECT_DIR$/pyosrom WIP Jarno/pyosrom/gui/application.py" />
+    <entry file="file://$PROJECT_DIR$/apt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="4" column="36" lean-forward="true" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protocol/message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Debug/testscanzy.py" />
+    <entry file="file://$PROJECT_DIR$/data_visualisation/manual plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+          <folding>
+            <element signature="e#1#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Debug/test_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/backends/backend_pdf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="2416" column="8" selection-start-line="2416" selection-start-column="8" selection-end-line="2416" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/matplotlib/pyplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="574" column="31" selection-start-line="574" selection-start-column="31" selection-end-line="574" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/shutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9656">
+          <caret line="573" column="15" selection-start-line="573" selection-start-column="15" selection-end-line="574" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_scans.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/module.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="93" column="8" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Debug/debug.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="47" column="20" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.7/site-packages/pyftdi/ftdi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6630">
+          <caret line="399" column="8" selection-start-line="399" selection-start-column="8" selection-end-line="399" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_visualisation/plot_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-950">
+          <caret line="34" column="33" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_visualisation/plot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_visualisation/excel_store.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2019-08-06-14,18,37-UTC-Grindscan.png" />
+    <entry file="file://$PROJECT_DIR$/2019-08-06-13,59,28-UTC-Grindscan.png" />
+    <entry file="file://$PROJECT_DIR$/2019-08-06-14,37,00-UTC-Grindscan.png" />
+    <entry file="file://$PROJECT_DIR$/data_visualisation/DataPlot/simplex_snake/2019-08-06-13,34,04-UTC-Grindscan.png" />
+    <entry file="file://$PROJECT_DIR$/data_visualisation/DataPlot/simplex_snake/2019-08-06-13,37,00-UTC-Grindscan.png" />
+    <entry file="file://$PROJECT_DIR$/Debug/testsmallscan-0.8s-f11-v2.csv" />
+    <entry file="file://$PROJECT_DIR$/Scanmethods/simple_scan.py" />
+    <entry file="file://$PROJECT_DIR$/Scanmethods/simplex_2d.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/interface/sensor.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/point_2D.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scanmethods/snake_scan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
