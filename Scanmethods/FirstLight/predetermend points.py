@@ -10,21 +10,30 @@ from util.read_excel_file import read_file
 from data_visualisation.plot import Plot
 from data_visualisation.manual_plot import plot3D
 from data_visualisation.manual_plot import plot_simplex
+from util.project_root import get_project_root
+import configparser
+import os
 
+# noinspection PyAttributeOutsideInit, PyUnusedLocal
 class predeterment_points:
-    def __init__(self, interface, file=None, dataset=None ):
-        self.interfaces = None
-        self.interfaces = interfaces()
+    def __init__(self, interface, file=None, dataset=None):
 
-        self.time_begin = None
-        self.time_end = None
+        self.interface = interface
 
-        # data for the plotting of the scan
+        # Definition for variables used for data storage
         self.num_measurements = 0
-        self.highest_points = list()
 
-        self.points_measured = []
-        self.peak_point = None
+        # creation of the configparser object this object is used for the reading of the config file
+        self.config = configparser.ConfigParser()
+
+        # Get the relative path of the project, this is needed because the location in the filesystem of the
+        # project might change.)
+        rel_path = get_project_root()
+        self.config_path = os.path.join(rel_path, "config")
+        self.config_filename = 'first_light.ini'
+
+        # load the config file to assign the values to the variables
+        self.load_config(file=file)
 
     def load_config(self, file=None):
         """ This function read a configfile and assigns the values in the configfile to variables
@@ -37,11 +46,16 @@ class predeterment_points:
         self.config.read(self.config_path + "\\" + self.config_filename)
 
         # Get values from the configfile and assign them to the correct variables
-        self.refl = self.config.getfloat("Simplex", "reflection")
-        self.exp = self.config.getfloat("Simplex", "expansion")
-        self.cont = self.config.getfloat("Simplex", "contraction")
-        self.iterations = self.config.getint("Simplex", "iterations")
-        self.simplex_size = self.config.getfloat("Simplex", "simplex size")
+        self.y_range = self.config.getfloat("Algorithm independent", "Range y")
+        self.z_range = self.config.getfloat("Algorithm independent", "Range z")
+
+        self.threshold = self.config.getfloat("Predetermined points", "Threshold value")
+        self.size_y = self.config.getint("Predetermined points", "waveguide size y")
+        self.size_z = self.config.getint("Predetermined points", "waveguide size z")
+
+        self.num_points_x = self.config.getint("Predetermined points", "number points x")
+        self.num_points_y = self.config.getint("Predetermined points", "number points y")
+        self.num_points_z = self.config.getint("Predetermined points", "number points z")
 
     def test_dataset(self, location):
         """
@@ -78,7 +92,7 @@ class predeterment_points:
             y, z = location
             # Check if the location that the algorithm wants to measure is within the range of
             # the actuators
-            if 0.0 <= y <= 30.0 and 0.0 <= z <= 30.0:
+            if 0.0 <= y <= self.y_range and 0.0 <= z <= self.y_range:
                 # Move to the location that the algorithm wants to measure
                 self.interface.move(y, z)
                 # Increment the amount of measurements done so it is possible to measure the performance
@@ -87,22 +101,21 @@ class predeterment_points:
             return 1.5e-20
 
     def point_scan(self):
-        for y in np.arange(2.5, 32.5, 5):
-            for z in np.arange(2.5, 32.5, 5):
-                self.points_measured.append(Point2D((y,z),self.move_location((y,z))))
-                if self.points_measured[len(self.points_measured)-1].point_value > 0.5*0.04:
-                    break
-        self.sort_points()
+        # The following loops create the grid that the points are placed in, it calculates the points so that a gradient
+        # of the peak is always measured. It does that by making the gaps in the grid a bit smaller than the peak size.
+        for y in np.arange(self.size_y/2, self.y_range + (self.size_y/2), self.size_y):
+            for z in np.arange(self.size_z/2, self.z_range + (self.size_y/2), self.size_z):
+                # measure the calculated point
+                measured_point = Point2D((y, z), self.move_location((y, z)))
+                # check if the measured point exceeds a certain threshold if the value of the point is higher then the
+                # threshold stop measuring points and return the point.
+                if measured_point.point_value > self.threshold:
+                    self.highest_point = measured_point
+                    return self.highest_point
 
     def sort_points(self):
         self.points_measured.sort()
 
-    def get_peak_postion(self):
-        return self.points_measured[len(self.points_measured)-1].get_location()
-
-
-
-if __name__ == '__main__':
-    predeterment_points = predeterment_points(0.5)
-    predeterment_points.point_scan()
-    print(predeterment_points.get_peak_postion())
+    def get_peak_position(self):
+        self.sort_points()
+        return self.highest_point.get_location()
