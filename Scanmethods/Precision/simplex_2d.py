@@ -1,58 +1,63 @@
 import numpy as np
 from util.point_2D import Point2D
+import time
+import math.floor as floor
+import os
+import configparser
+from util.project_root import get_project_root
 
+# noinspection PyAttributeOutsideInit, PyUnusedLocal
 class Simplex_2D:
 
-    def __init__(self, interface, refl=1, exp=2, cont=0.5, shrink=0.3, max_iteration=10, dataset=None ):
-        """this initilises all global variables and retrieves the first three data points
-        to start the alogritm. it will also initialize the connection with the Thorlabs PM100USB and the
-        Thorlabs bpc303 150V piezo controller
+    def __init__(self, interface, file=None, dataset=None):
+        """This function calls the function to read the configuration file and assigns the parameters
+        to the variables
 
-        Parameters=
-        relf = multiplier of reflection point
-        exp = multiplier of expansion point
-        cont = multiplier of outside/inside contraction point
-        shrink = multiplier of the shrink points
-        max_iterations = the number of times one stage of the simplex algorithm gets executed"""
-        # assign the varibles to class
-        self.refl = refl
-        self.exp = exp
-        self.cont = cont
-        self.shrink = shrink
-        self.interfaces = interface
-        self.values = None
-        self.step_time = 0.8
-        self.time_begin = None
-        self.time_end = None
-
-        # the list of points 0 = worst 1 = middle and 2 = best
-        self.points = []
-
-        # values of the specific points
-        self.centroid_point = None
-        self.inside_cont = None
-        self.outside_cont = None
-        self.reflection_point = None
-        self.expansion_point = None
-        # data for the plotting of the scan
-        self.iterations = max_iteration
-        self.num_measurements = 0
-        self.highest_points = list()
-        self.time_begin = None
-        self.time_end = None
-
+        @:param interface The abstraction of the communication with the hardware
+        @:param file the filename is the user wants to load a different configfile
+        @:param dataset A dataset to test the simplex algoritm on.
+        """
+        # Assign the abstraction of the communication with the hardware to a variable
+        self.interface = interface
+        # Assign the dataset that the code needs to execute on to a object is the parameter is not given
+        # this objects value will be None
         self.dataset = dataset
 
-    def function(self, location):
-        x, y = location
-        z = -pow((y - 1), 2) - pow((x - 1), 2) + 5
+        # creation of the configparser object this object is used for the reading of the config file
+        self.config = configparser.ConfigParser()
 
-        return z
+        # The initial definition of the global variable
+        self.num_measurements = 0
+
+        # Get the relative path of the project, this is needed because the location in the filesystem of the
+        # project might change.
+        rel_path = get_project_root()
+        self.config_path = os.path.join(rel_path, "config")
+        self.config_filename = 'precision_algorithms.ini'
+
+        # load the config file to assign the values to the variables
+        self.load_config(file=file)
+
+    def load_config(self, file=None):
+        """ This function read a configfile and assigns the values in the configfile to variables
+
+        @:param file the filename is the user wants to load a different configfile
+        """
+        if file is not None:
+            self.config_filename = file
+
+        self.config.read(self.config_path + "\\" + self.config_filename)
+        self.config.get("application", "data_file")
+        self.refl = self.config.get("Simplex", "reflection")
+        self.exp = self.config.get("Simplex", "expansion")
+        self.cont = self.config.get("Simplex", "contraction")
+        self.iterations = self.config.get("Simplex", "iterations")
+
 
     def test_dataset(self, location):
         y, z = location
-        y = int(y)
-        z = int(z)
+        y = floor(y)
+        z = floor(z)
         if 0.0 <= y <= 29.0 and 0.0 <= z <= 29.0:
             x = self.dataset[z][y]
             x = abs(x)
