@@ -1,4 +1,4 @@
-from util import helpers
+from piezo.util import helpers
 
 
 class Message:

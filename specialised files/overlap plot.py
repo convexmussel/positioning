@@ -38,8 +38,8 @@ class plot:
         self.figure, self.ax = plt.subplots()
         self.ax.set_title("Intesity plot of the chip when propation axis is changed")
         self.ax.set_xlim(30, 0)
-        self.ax.set_xlabel('Piezo extension y (μm)')
-        self.ax.set_ylabel('Piezo extension y (μm)')
+        self.ax.set_xlabel('Y [μm]')
+        self.ax.set_ylabel('Z [μm]')
 
     def plot(self, data):
         for array in data:

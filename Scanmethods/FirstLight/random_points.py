@@ -5,8 +5,8 @@ import random
 import math
 
 import numpy as np
-from util.point_2D import Point2D
-from util.project_root import get_project_root
+from piezo.util.point_2D import Point2D
+from piezo.util.project_root import get_project_root
 
 
 # noinspection PyAttributeOutsideInit, PyUnusedLocal
@@ -24,8 +24,9 @@ class random_predeterment_points:
         # Get the relative path of the project, this is needed because the location in the filesystem of the
         # project might change.)
         rel_path = get_project_root()
-        self.config_path = os.path.join(rel_path, "config")
         self.config_filename = 'first_light.ini'
+        self.config_path = os.path.join(rel_path, "config", self.config_filename)
+
 
         # store the dataset
         self.dataset = dataset
@@ -40,13 +41,13 @@ class random_predeterment_points:
         if file is not None:
             self.config_filename = file
         # Read the configfile with the assigned name
-        self.config.read(self.config_path + "\\" + self.config_filename)
+        self.config.read(self.config_path)
 
         # Get values from the configfile and assign them to the correct variables
         self.y_range = self.config.getfloat("Random Predetermined points", "Range y")
         self.z_range = self.config.getfloat("Random Predetermined points", "Range z")
 
-        self.threshold = self.config.get("Random Predetermined points", "Threshold value")
+        self.Threshold_percentage = self.config.get("Random Predetermined points", "Threshold percentage")
         self.size_y = self.config.getint("Random Predetermined points", "waveguide size y")
         self.size_z = self.config.getint("Random Predetermined points", "waveguide size z")
 
@@ -54,8 +55,8 @@ class random_predeterment_points:
         self.num_points_y = self.config.getint("Random Predetermined points", "number points y")
         self.num_points_z = self.config.getint("Random Predetermined points", "number points z")
 
-        if self.threshold != 'none':
-            self.threshold = float(self.threshold)
+        if self.Threshold_percentage != 'none':
+            self.Threshold_percentage = float(self.Threshold_percentage)
 
     def test_dataset(self, location):
         """
@@ -65,9 +66,11 @@ class random_predeterment_points:
         # Unpack the location tuple into the coordinates
         y, z = location
 
+        y =3001 /30*y
+        z = 3001/30*z
         # Round the files down as an interger number
-        y = math.floor(y)
-        z = math.floor(z)
+        y = int(round(y))
+        z = int(round(z))
         # Try to get the value from the dataset the value is out of range catch the exeption
         # and return a value that is always not interesting for the algorithm
         try:
@@ -100,6 +103,24 @@ class random_predeterment_points:
                 return self.interface.read()
             return 1.5e-20
 
+    def check_value(self, point):
+        """
+        Function to check if the value measured at the new location is higher
+        than te mean of the previous values
+        :param value: The new point_2D object with value
+        :return: bool
+        """
+        mean = 0
+        for points in self.measured_points:
+            mean += points.point_value
+        mean = mean/len(self.measured_points)
+        print(mean)
+        print(mean+self.Threshold_percentage*mean)
+        print(point.point_value)
+        if point.point_value >= (mean+self.Threshold_percentage*mean):
+            return True
+        return False
+
     def point_scan(self):
         location = []
         # The following loops create the grid that the points are placed in, it calculates the points so that a gradient
@@ -122,22 +143,23 @@ class random_predeterment_points:
                 else:
                     previus_nums.append([numy, numz])
                     previus_nums.sort()
-                    print([numy, numz])
                     break
 
-            print(str(numy + numz * 6) + ' ' + str(location[numy * 6 + numz]))
             point = Point2D(location[numy * 6 + numz], self.move_location(location[numy * 6 + numz]))
             self.measured_points.append(point)
             points_measured += 1
-            print(points_measured)
+
+            print(len(self.measured_points))
             # is the threshold is not set aka none
-            if self.threshold != "none":
-                if point.point_value > self.threshold:
+            if self.Threshold_percentage != "none":
+                if self.check_value(point):
                     return self.measured_points[-1]
                 # If all the points are measured and the threshold is not reached or the threshold is not set sort the list
                 # of points and return the point with the highest value
-            elif len(self.measured_points) == self.num_points_y * self.num_points_z:
+
+            if len(self.measured_points) == (self.num_points_y * self.num_points_z):
                 self.measured_points.sort()
+                print("to many")
                 return self.measured_points[-1]
 
     def sort_points(self):
@@ -149,3 +171,5 @@ class random_predeterment_points:
     def get_measured_points(self):
         return self.measured_points
 
+    def get_num_measurements(self):
+        return self.num_measurements

@@ -5,14 +5,14 @@ import time
 import math
 
 import numpy as np
-from util.point_2D import Point2D
-from util.project_root import get_project_root
+from piezo.util.point_2D import Point2D
+from piezo.util.project_root import get_project_root
 
 
 # noinspection PyAttributeOutsideInit, PyUnusedLocal
 class Simplex_2D:
 
-    def __init__(self, interface, file=None, dataset=None):
+    def __init__(self, interface, dataset=None, file=None):
         """This function calls the function to read the configuration file and assigns the parameters
         to the variables
 
@@ -39,8 +39,9 @@ class Simplex_2D:
         # Get the relative path of the project, this is needed because the location in the filesystem of the
         # project might change.
         rel_path = get_project_root()
-        self.config_path = os.path.join(rel_path, "config")
         self.config_filename = 'precision_algorithms.ini'
+        self.config_path = os.path.join(rel_path, "config", self.config_filename)
+
 
         # load the config file to assign the values to the variables
         self.load_config(file=file)
@@ -53,7 +54,7 @@ class Simplex_2D:
         if file is not None:
             self.config_filename = file
         # Read the configfile with the assigned name
-        self.config.read(self.config_path + "\\" + self.config_filename)
+        self.config.read(self.config_path)
 
         # Get values from the configfile and assign them to the correct variables
         self.refl = self.config.getfloat("Simplex", "reflection")
@@ -70,12 +71,15 @@ class Simplex_2D:
         # Unpack the location tuple into the coordinates
         y, z = location
 
+        y =3001 /30*y
+        z = 3001/30*z
         # Round the files down as an interger number
-        y = math.floor(y)
-        z = math.floor(z)
+        y = int(round(y))
+        z = int(round(z))
         # Try to get the value from the dataset the value is out of range catch the exeption
         # and return a value that is always not interesting for the algorithm
         try:
+
             self.num_measurements += 1
             value = self.dataset[z][y]
             # Make sure that the value is always positive
@@ -96,7 +100,6 @@ class Simplex_2D:
 
             # Unpack the location tuple into the coordinates
             y, z = location
-            print("measuring: " + str(y) + ": " + str(z))
             # Check if the location that the algorithm wants to measure is within the range of
             # the actuators
             if 0.0 <= y <= 30.0 and 0.0 <= z <= 30.0:
@@ -272,7 +275,6 @@ class Simplex_2D:
 
             # Save the highest point
             self.highest_points.append(self.points[2])
-            print(str(self.points[2].point_value) + " " + str(self.points[2].get_location()))
             # Calculate the centroid and reflect point
             self.centroid_point = self.centroid()
             self.reflection_point = self.reflect()

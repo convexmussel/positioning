@@ -1,8 +1,8 @@
 from string import Template
 
-from interface.apt.controller import Controller
-from interface.apt.module import Module
-from protocol.message import Message
+from piezo.interface.apt.controller import Controller
+from piezo.interface.apt.module import Module
+from piezo.protocol.message import Message
 
 
 class APT:

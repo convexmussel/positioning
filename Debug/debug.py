@@ -1,12 +1,19 @@
-import data_visualisation.plot_data
+
 import numpy
-from data_visualisation.plot_data import plot2D_line
-from data_visualisation.plot import Plot
-from interface.interfaces import interfaces
-from interface.apt.apt import APT
+import pandas as pd
+from piezo.interface.interfaces import interfaces
+from piezo.interface.apt.apt import APT
 import time
-while True:
-    interface = interfaces()
-    interface.move(15, 18)
-    print(interface.read())
-    time.sleep(3)
+interface = interfaces()
+newDF = pd.DataFrame()
+newDF.columms = ["Laser current", "photodiode current"]
+begin_time = time.time()
+read_values = interface.read()
+
+while begin_time+1800 > time.time():
+    read_values = interface.read()
+
+    newDF= newDF.append({'Laser current' : read_values[1] , 'photodiode current' : read_values[7]} , ignore_index=True)
+    print(newDF)
+    newDF.to_excel("results piezo 2.xlsx")
+    time.sleep(1)

@@ -23,15 +23,6 @@ def fmt(x, pos):
     return r'${} \times 10^{{{}}}$'.format(a, b)
 
 
-root = get_project_root()
-folder_path = os.path.join(root, "data_visualisation", "ExcelFiles" + "\\" "scan_files" + "\\" +
-                           "um from wave guide" + str(0) + "readings turnnob-8-3-1,2-minimaal"
-                           + str(1) + ".xls")
-file = pandas.read_excel(folder_path)
-numpy = file.to_numpy()
-array = numpy[12:, :]
-array = array.astype('float')
-print(np.linspace(0, 4, 5, endpoint=True))
 
 
 def plotbig(gridscan, points, simplex_highest=[]):
@@ -125,9 +116,9 @@ for i in range(0, 15):
     precision = Simplex_2D(interface)
 
     highest_location = random.point_scan()
-    precision.scan(highest_location)
+    precision.scan()
     print(precision.get_bestpoint().get_location())
-
+    print(precision.get_bestpoint().get_location())
     highest_values[i][0] = precision.get_bestpoint().point_value
     y, z = precision.get_bestpoint().get_location()
     highest_values[i][1] = y

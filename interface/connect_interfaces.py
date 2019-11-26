@@ -1,11 +1,11 @@
-from interface.osrom.pyosrom.application import Osrom
-from interface.pps.pps import PPS
+from piezo.interface.osrom.pyosrom.application import Osrom
+from piezo.interface.pps.pps import PPS
 from pyvisa import errors
-from interface.apt.apt import APT
+from piezo.interface.apt.apt import APT
 import numpy
 import os
 import configparser
-from util.project_root import get_project_root
+from piezo.util.project_root import get_project_root
 
 
 class connect_interfaces:
@@ -51,7 +51,7 @@ class connect_interfaces:
 
         self.config.read(file)
         print(self.config.sections())
-        self.osrom_channel = self.config.get("osrom", "channel")
+        self.osrom_channel = self.config.getint("osrom", "channel")
         self.osrom_fiber = self.config.get("osrom", "fiber")
         self.osrom_reading = self.config.get("osrom", "reading")
 

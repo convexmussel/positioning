@@ -17,10 +17,10 @@ __email__ = "g.h.p.ebberink@saxion.nl"
 __status__ = "Prototype"
 
 import configparser
-from interface.osrom.pyosrom.getdevices import getdevices
+from piezo.interface.osrom.pyosrom.getdevices import getdevices
 import numpy
 import os
-from util.project_root import get_project_root
+from piezo.util.project_root import get_project_root
 
 # get the relative path so it works on all operating systems
 rel_path = get_project_root()
@@ -34,7 +34,7 @@ try:
 except configparser.NoSectionError:
     print("osrom not connected")
 
-from interface.osrom.pyosrom import osrom
+from piezo.interface.osrom.pyosrom import osrom
 
 del config
 
@@ -280,8 +280,8 @@ class Osrom:
                     data = numpy.roll(data, self.roll_data, 1)
                 channels = self.intask.number_of_channels
                 shift = numpy.nan
-                # for all channels to be read.
-                return numpy.mean(data[1])
+                # for all channels to be read
+                return numpy.mean(data, axis=1)
 
     def disconnect(self):
         self.intask.StopTask()

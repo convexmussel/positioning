@@ -2,7 +2,7 @@ from string import Template
 
 import math
 
-from protocol.message import Message
+from piezo.protocol.message import Message
 
 
 class Module:

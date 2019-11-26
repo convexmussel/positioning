@@ -38,8 +38,11 @@ import sys
 from _ctypes import byref
 
 import numpy
-import PyDAQmx
-from util.project_root import get_project_root
+try:
+    import PyDAQmx
+except Exception as e:
+    print(e)
+from piezo.util.project_root import get_project_root
 
 
 # noinspection PyUnresolvedReferences,PyAttributeOutsideInit,PyPep8Naming

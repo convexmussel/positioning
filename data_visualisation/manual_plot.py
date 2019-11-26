@@ -2,9 +2,8 @@
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from matplotlib import cm
-from util.read_excel_file import read_file
 import numpy as np
-from util.project_root import get_project_root
+from piezo.util.project_root import get_project_root
 import os
 import shutil
 import time
@@ -77,9 +76,8 @@ def plot2D():
             array_list.append(numpy)
 
     fig, axs = plt.subplots(1, 3, sharex=True, sharey=True, figsize=(12,3.5))
-    fig.suptitle('Plots of dataset 1')
-    fig.text(0.43, 0.04, 'Y displacement ${\mu}m$', ha='center')
-    fig.text(0.04, 0.5, 'Z displacement ${\mu}m$', va='center', rotation='vertical')
+    fig.text(0.43, 0.04, 'Y [${\mu}m$]', ha='center')
+    fig.text(0.04, 0.5, 'Z [${\mu}m$]', va='center', rotation='vertical')
     plotnum = 0
     plt.jet()
     for ax in axs:
@@ -87,12 +85,12 @@ def plot2D():
         ax.invert_yaxis()
         plotnum += 1
 
-    axs[0].set_title('X displacement 0${\mu}m$')
-    axs[1].set_title('X displacement 14${\mu}m$')
-    axs[2].set_title('X displacement 30${\mu}m$')
+    axs[0].set_title('X = 30 [${\mu}m$]')
+    axs[1].set_title('X = 14 [${\mu}m$]')
+    axs[2].set_title('X = 0 [${\mu}m$]')
 
     cbar = fig.colorbar(image, ax=axs.ravel().tolist(), format=ticker.FuncFormatter(fmt))
-    cbar.ax.set_ylabel('Intensity (mA)')
+    cbar.ax.set_ylabel('Photodiode current [A]')
     plt.show()
 def plot3D():
     """"plots a 3d represtation of scan with coulourbar"""
@@ -117,5 +115,4 @@ def plot3D():
 
     plt.show()
 
-if __file__ == "__main__":
-    plot2D()
+plot2D()

@@ -1,4 +1,4 @@
-from interface.connect_interfaces import connect_interfaces
+from piezo.interface.connect_interfaces import connect_interfaces
 
 import time
 
@@ -40,6 +40,16 @@ class interfaces:
             # wait a certain time before moving on to ensure the piezo are done moving
             time.sleep(float(self.interfaces.controller_time))
 
+    def move_list(self, location):
+        # check if the module is connected
+        if self.module_y is not None and self.module_z is not None:
+            # move the modules to the correct spot
+            self.module_y.move(location[1])
+            self.module_z.move(location[2])
+            if location.size == 3:
+                self.module_x.move(location[0])
+            # wait a certain time before moving on to ensure the piezo are done moving
+            time.sleep(float(self.interfaces.controller_time))
     def read(self):
         # check if the sensor is connected
         if self.interfaces.osrom is not None:

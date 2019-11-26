@@ -4,8 +4,8 @@ import time
 
 import math
 
-from util.point_2D import Point2D
-from util.project_root import get_project_root
+from piezo.util.point_2D import Point2D
+from piezo.util.project_root import get_project_root
 
 
 # noinspection PyAttributeOutsideInit, PyUnusedLocal
@@ -55,7 +55,7 @@ class PatternSearch:
         # Get values from the configfile and assign them to the correct variables
         self.shrink_factor = self.config.getfloat("Pattern_scan", "shrink factor")
         self.size = self.config.getfloat("Pattern_scan", "initial size")
-        self.threshold_samepoints = self.config.get("Pattern_scan", "number same points")
+        self.threshold_samepoints = self.config.getint("Pattern_scan", "number same points")
         self.iterations = self.config.get("Pattern_scan", "number iterations")
 
         # check if set values are none, if assigned to none give the amount of samepoints the value -1 and
@@ -73,10 +73,11 @@ class PatternSearch:
         """
         # Unpack the location tuple into the coordinates
         y, z = location
-
+        y =3001 /30*y
+        z = 3001/30*z
         # Round the files down as an interger number
-        y = math.floor(y)
-        z = math.floor(z)
+        y = int(round(y))
+        z = int(round(z))
         # Try to get the value from the dataset the value is out of range catch the exeption
         # and return a value that is always not interesting for the algorithm
         try:
@@ -187,17 +188,17 @@ class PatternSearch:
         self.time_end = time.time()
 
 
-def get_bestpoint(self):
-    return self.highest_point
+    def get_bestpoint(self):
+        return self.highest_point
 
 
-def get_num_measurements(self):
-    return self.num_measurements
+    def get_num_measurements(self):
+        return self.num_measurements
 
 
-def get_exc_time(self):
-    return self.time_end - self.time_begin
+    def get_exc_time(self):
+        return self.time_end - self.time_begin
 
 
-def get_highest_points(self):
-    return self.highest_points
+    def get_highest_points(self):
+        return self.highest_points
