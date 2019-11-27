@@ -3,7 +3,7 @@ from piezo.util.point_3d import Point3D
 import numpy as np
 import math, random
 from piezo.algorithms import *
-
+from operator import sub
 
 class PSO(Template):
     def __init__(self):
@@ -19,19 +19,41 @@ class PSO(Template):
 
         self.no_improvement = 0
 
+        self.load_config()
+
+    def load_config(self, file=None):
+        """ This function read a configfile and assigns the values in the configfile to variables
+
+        @:param file the filename is the user wants to load a different configfile
+        """
+        self.config.read(self.config_path)
+
+        # Get values from the configfile and assign them to the correct variables
+        self.convergence_rate = self.config.getfloat("Spiral_scan", "convergence rate")
+        self.num_beginning = self.config.getint("Spiral_scan", "number of beginning points")
+        self.start_size = self.config.getint("Spiral_scan", "starting size")
+        self.phi = eval(self.config.get("Spiral_scan", "phi"))
+        self.same_points = self.config.getint("Spiral_scan", "number same points")
+        self.iterations = self.config.getint("Spiral_scan", "max iterations")
+
     def termination(self):
         if self.num_measurements >= self.iterations:
             return True
 
-        if self.no_improvement > self.same_point:
+        if self.no_improvement > self.same_points:
             return True
         return False
 
     def check_improved(self, point):
         if self.highest_points[-1].point_value <= point.point_value:
+            difference = tuple(map(sub, point.location, self.highest_points[-1].location))
+            self.previous_point = Point3D((np.array(point.location) + np.array(difference)))
+
             self.highest_points.append(point)
             self.no_improvement = 0
             return True
+        else:
+            self.previous_point = point
         self.no_improvement = self.no_improvement + 1
         return False
 
@@ -42,10 +64,10 @@ class PSO(Template):
         :return: point2D object of the calculated point
         """
         # Get the coordiantes of the previous point
-        y0, z0 = previous_point.get_location()
+        y0, z0 = previous_point.location
 
         # Get the coordinates of the highest point
-        zero_y, zero_z = highest_point.get_location()
+        zero_y, zero_z = highest_point.location
 
         # create the rotaion matrix and a matrix that contains the coordinates of the previous Point
         rotation_matrix = np.array([[math.cos(self.phi), -math.sin(self.phi)],
@@ -79,7 +101,7 @@ class PSO(Template):
 
         # get the location of the first highest point and determine the first point (start)
         # of the spiral
-        y, z = self.highest_points[-1].get_location()
+        y, z = self.highest_points[-1].location
         self.to_measure = Point3D((y + self.start_size, z + self.start_size))
         self.state = started
 
@@ -92,9 +114,7 @@ class PSO(Template):
             self.check_improved(point)
             if self.termination():
                 self.state = finished
-                return finished
-
-            self.previous_point = point
+                return self.highest_points[-1]
             self.calculate_point(self.previous_point, self.highest_points[-1])
 
         if self.state == not_started:
@@ -104,9 +124,6 @@ class PSO(Template):
 
     def get_dictionary(self):
         return {'PSO': self}
-
-pso = PSO()
-
 
 # test = dict()
 # template = pso.get_dictionary()
